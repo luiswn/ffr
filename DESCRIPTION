@@ -1,0 +1,25 @@
+Package: ffr
+Title: Functional Factor Regression
+Version: 0.0.0.9000
+Authors@R: c(
+    person("Luis", "Winter", , "l.winter@uni-koeln.de", role = c("aut", "cre")),
+    person("Sven", "Otto", , "sven.otto@uni-koeln.de", role = "aut")
+  )
+Description: Estimation, prediction and inference in linear regression
+    models with functional response and functional/scalar predictors.
+License: MIT + file LICENSE
+URL: https://github.com/luiswn/ffr
+BugReports: https://github.com/luiswn/ffr/issues
+Encoding: UTF-8
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.3.2
+Suggests: 
+    testthat (>= 3.0.0)
+Config/testthat/edition: 3
+Imports: 
+    fields,
+    magrittr,
+    plotly,
+    pracma,
+    progress,
+    scales
