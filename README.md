@@ -4,13 +4,12 @@
 <!-- badges: start -->
 [![Lifecycle: experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
 [![CRAN status](https://www.r-pkg.org/badges/version/ffr)](https://CRAN.R-project.org/package=ffr)
-[![R-CMD-check](https://github.com/luiswn/ffr/workflows/R-CMD-check/badge.svg)](https://github.com/luiswn/ffr/actions)
 [![R-CMD-check](https://github.com/luiswn/ffr/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/luiswn/ffr/actions)
 <!-- badges: end -->
 
 The `ffr` package provides a comprehensive framework for estimation, prediction and statistical inference in functional linear models. It implements the functional factor regression approach for modeling relationships between functional and scalar predictors and functional responses, originally introduced by Otto & Winter (2025).
 
-# ffr: Functional Factor Regression
+## Preprint
 
 arxiv link
 
