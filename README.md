@@ -4,7 +4,8 @@
 <!-- badges: start -->
 [![Lifecycle: experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
 [![CRAN status](https://www.r-pkg.org/badges/version/ffr)](https://CRAN.R-project.org/package=ffr)
-[![R-CMD-check](https://github.com/yourusername/ffr/workflows/R-CMD-check/badge.svg)](https://github.com/luiswn/ffr/actions)
+[![R-CMD-check](https://github.com/luiswn/ffr/workflows/R-CMD-check/badge.svg)](https://github.com/luiswn/ffr/actions)
+[![R-CMD-check](https://github.com/luiswn/ffr/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/luiswn/ffr/actions)
 <!-- badges: end -->
 
 The `ffr` package provides a comprehensive framework for estimation, prediction and statistical inference in functional linear models. It implements the functional factor regression approach for modeling relationships between functional and scalar predictors and functional responses, originally introduced by Otto & Winter (2025).
@@ -34,7 +35,7 @@ devtools::install_github("luiswn/ffr")
 
 This is a minimal example to demonstrate the core functionalities of the `ffr` package. The code example does not coincide with the application in the paper.
 
-# Data Preparation
+### Data Preparation
 
 The data used in the following stems from the [epftoolbox](https://epftoolbox.readthedocs.io/en/latest/index.html). Please install the Python package as explained [here](https://epftoolbox.readthedocs.io/en/latest/modules/started.html#installation) before you execute the R code.
 
@@ -82,7 +83,7 @@ data <- list(Price = as.matrix(Price),
              Load = as.matrix(Load), 
              Wind_Solar_Gen = as.matrix(Wind_Solar_Gen))
 ```
-# Factor Estimation
+### Factor Estimation
 
 ``` r
 library(ffr)
@@ -93,7 +94,7 @@ print(K_EDresult$K)
 
 ```
 
-# Fit Fully Functional Linear Regression
+### Fit Fully Functional Linear Regression
 
 ``` r
 # Fit a function-on-function linear model with scalar predictor
@@ -107,7 +108,7 @@ print(ffr_model_sum)
 
 ```
 
-# Visualization
+### Visualization
 
 ``` r
 # Visualize the coefficient and confidence region heatmaps for the electricity load predictor
