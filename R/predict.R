@@ -6,6 +6,7 @@
 #' @param object An object of class "flm", typically the result of a call to \code{\link{flm}}.
 #' @param newdata A list containing the predictors for which to generate predictions. Must contain
 #'        all predictors used in the original model with the same format and grid dimensions.
+#' @param ... Additional arguments passed to model prediction functions.
 #'
 #' @details
 #' This function applies a fitted functional linear model to new data to generate functional predictions.
@@ -47,7 +48,7 @@
 #' @rdname predict.flm
 #' @method predict flm
 #' @export
-predict.flm <- function(object, newdata) {
+predict.flm <- function(object, newdata, ...) {
   # Validate input
   if (!inherits(object, "flm")) {
     stop("'object' must be a flm model")

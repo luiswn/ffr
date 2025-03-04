@@ -35,15 +35,14 @@
 #' }
 #'
 #' @references
-#' Otto, S., & Winter, L. (in press). Functional factor regression with an application to electricity price curve modeling.
-#'
+#' Otto, S., & Winter, L. (2025). Functional factor regression with an application to electricity price curve modeling.
 #' Wu, J. (2018). Eigenvalue difference test for the number of common factors in the approximate factor models. Economics Letters, 169, 63–67.
 #'
 #' @keywords internal
-"_PACKAGE"
 #' @name ffr
 #' @import stats
 #' @importFrom pracma repmat
 #' @importFrom graphics abline contour image legend matplot par
 #' @importFrom grDevices colorRampPalette
+"_PACKAGE"
 NULL

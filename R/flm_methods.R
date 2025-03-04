@@ -4,6 +4,7 @@
 #' Displays a concise summary of a fitted functional linear model object.
 #'
 #' @param x An object of class "flm", typically the result of a call to \code{\link{flm}}.
+#' @param ... Additional arguments passed to model printing functions.
 #'
 #' @details
 #' Prints basic information about the model including the call, number of observations,
@@ -25,7 +26,7 @@
 #' @rdname print.flm
 #' @method print flm
 #' @export
-print.flm <- function(x) {
+print.flm <- function(x, ...) {
   cat("\nFunction-on-Function Linear Regression\n\n")
   cat("Call:\n")
   print(x$info$call)
@@ -51,6 +52,7 @@ print.flm <- function(x) {
 #' Computes and returns comprehensive summary statistics for a fitted functional linear model.
 #'
 #' @param object An object of class "flm", typically the result of a call to \code{\link{flm}}.
+#' @param ... Additional arguments passed to summary functions.
 #'
 #' @details
 #' Calculates various goodness-of-fit measures including R-squared (both functional and average),
@@ -134,7 +136,7 @@ print.flm <- function(x) {
 #' @rdname summary.flm
 #' @method summary flm
 #' @export
-summary.flm <- function(object) {
+summary.flm <- function(object, ...) {
   # Calculate total sum of squares
   TSS <- colSums((object$fitted$Y + object$residuals$Y - pracma::repmat(object$info$grid_info$Y$mean, object$info$n_obs, 1))^2)
   # Calculate residual sum of squares
@@ -190,6 +192,7 @@ summary.flm <- function(object) {
 #' Displays a formatted summary of a functional linear model.
 #'
 #' @param x An object of class "summary.flm", typically the result of a call to \code{\link{summary.flm}}.
+#' @param ... Additional arguments passed to summary printing functions.
 #'
 #' @details
 #' Presents a detailed overview of model fit statistics, model complexity metrics,
@@ -214,7 +217,7 @@ summary.flm <- function(object) {
 #' @method print summary.flm
 #' @export
 #'
-print.summary.flm <- function(x) {
+print.summary.flm <- function(x, ...) {
   cat("\nFunction-on-Function Linear Regression\n")
   cat("=======================================\n\n")
   cat("Call:\n")
@@ -254,7 +257,7 @@ print.summary.flm <- function(x) {
   cat("  plot(summary(model), predictor = 'predictor_name', which = 'beta_3D', conf.region = TRUE)  # Plot 3D coefficient\n")
   cat("  plot(summary(model), predictor = 'predictor_name', which = 't')     # Plot t-values\n")
   cat("  plot(summary(model), predictor = 'predictor_name', which = 'p')     # Plot p-values\n")
-  cat("  plot(summary(model), which = 'R2')     # Plot functional R²\n")
+  cat("  plot(summary(model), which = 'R2')     # Plot functional R-squared\n")
   cat("\nFor scalar predictors:\n")
   cat("  plot(summary(model), predictor = 'intercept', which = 'beta')  # Plot intercept function\n")
   cat("  plot(summary(model), predictor = 'predictor_name', which = 'beta')  # Plot coefficient function\n")

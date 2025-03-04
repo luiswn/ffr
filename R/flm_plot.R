@@ -2,7 +2,7 @@
 #'
 #' @description
 #' Creates visualizations of functional linear model components including coefficient surfaces,
-#' t-values, p-values, and R² goodness-of-fit measure.
+#' t-values, p-values, and R-squared goodness-of-fit measure.
 #'
 #' @param x An object of class "summary.flm", typically the result of a call to \code{\link{summary.flm}}.
 #' @param predictor Character string specifying which predictor to visualize. Use "intercept" for the
@@ -13,10 +13,11 @@
 #'          \item{\code{"t"}}{t-values surface}
 #'          \item{\code{"p"}}{p-values surface with significance contours}
 #'          \item{\code{"beta_3D"}}{3D visualization of coefficient surface (requires plotly)}
-#'          \item{\code{"R2"}}{Functional R² across the response grid}
+#'          \item{\code{"R2"}}{Functional R-squared across the response grid}
 #'        }
 #' @param conf.region Logical. If \code{TRUE}, confidence regions are added to coefficient plots when available.
 #'        Default is \code{FALSE}.
+#' @param ... Additional arguments passed to summary plotting functions.
 #'
 #' @details
 #' This function provides a variety of visualization options for interpreting functional linear models:
@@ -40,8 +41,8 @@
 #'       Displays pointwise p-values with contour lines at significance levels 0.01, 0.05, and 0.1.
 #'       Only available for functional predictors.
 #'     }
-#'     \item{\strong{R² plot} (\code{which = "R2"})}{
-#'       Shows how the R² measure varies across the response grid, indicating where the model
+#'     \item{\strong{R-squared plot} (\code{which = "R2"})}{
+#'       Shows how the R-squared measure varies across the response grid, indicating where the model
 #'       fits better or worse.
 #'     }
 #'   }
@@ -96,7 +97,7 @@
 #' # Plot intercept function
 #' plot(model_summary, predictor = "intercept", which = "beta")
 #'
-#' # Plot R² across response grid
+#' # Plot R-squared across response grid
 #' plot(model_summary, which = "R2")
 #' }
 #'
@@ -112,7 +113,7 @@
 #' @export
 plot.summary.flm <- function(x, predictor = NULL,
                              which = c("beta", "t", "p", "beta_3D", "R2"),
-                             conf.region = FALSE) {
+                             conf.region = FALSE, ...) {
   # Input validation
   which <- match.arg(which)
 
@@ -121,7 +122,7 @@ plot.summary.flm <- function(x, predictor = NULL,
     matplot(x$info$grid_info$Y$grid, x$stats$R_squared_func,
       type = "l", lty = 1,
       xlab = paste("Grid points", x$info$call$formula[[2]]), ylab = "",
-      main = "Functional R² goodness-of-fit measure"
+      main = "Functional R-squared goodness-of-fit measure"
     )
     return(invisible())
   }
@@ -243,7 +244,7 @@ plot.summary.flm <- function(x, predictor = NULL,
         ),
         cmin = zlim_beta[1],
         cmax = zlim_beta[2],
-        name = "β(r,s)"
+        name = "beta(r,s)"
       )
 
     if (conf.region) {
@@ -271,7 +272,7 @@ plot.summary.flm <- function(x, predictor = NULL,
     p <- p %>% plotly::layout(
       title = list(
         text = paste0(
-          "3D visualization of β(r,s)",
+          "3D visualization of beta(r,s)",
           if (conf.region) paste0(" with ", x$inference$conf_level * 100, "% confidence bands") else ""
         ),
         x = 0.5,

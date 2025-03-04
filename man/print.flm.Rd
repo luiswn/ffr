@@ -4,10 +4,12 @@
 \alias{print.flm}
 \title{Print method for flm objects}
 \usage{
-\method{print}{flm}(x)
+\method{print}{flm}(x, ...)
 }
 \arguments{
 \item{x}{An object of class "flm", typically the result of a call to \code{\link{flm}}.}
+
+\item{...}{Additional arguments passed to model printing functions.}
 }
 \value{
 The function is called for printing model information.

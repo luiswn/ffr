@@ -4,13 +4,15 @@
 \alias{predict.flm}
 \title{Predict method for flm objects}
 \usage{
-\method{predict}{flm}(object, newdata)
+\method{predict}{flm}(object, newdata, ...)
 }
 \arguments{
 \item{object}{An object of class "flm", typically the result of a call to \code{\link{flm}}.}
 
 \item{newdata}{A list containing the predictors for which to generate predictions. Must contain
 all predictors used in the original model with the same format and grid dimensions.}
+
+\item{...}{Additional arguments passed to model prediction functions.}
 }
 \value{
 A matrix of predicted values with dimensions:

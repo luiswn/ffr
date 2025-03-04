@@ -8,7 +8,8 @@
   x,
   predictor = NULL,
   which = c("beta", "t", "p", "beta_3D", "R2"),
-  conf.region = FALSE
+  conf.region = FALSE,
+  ...
 )
 }
 \arguments{
@@ -23,11 +24,13 @@ intercept function. Not required when \code{which = "R2"}.}
 \item{\code{"t"}}{t-values surface}
 \item{\code{"p"}}{p-values surface with significance contours}
 \item{\code{"beta_3D"}}{3D visualization of coefficient surface (requires plotly)}
-\item{\code{"R2"}}{Functional R² across the response grid}
+\item{\code{"R2"}}{Functional R-squared across the response grid}
 }}
 
 \item{conf.region}{Logical. If \code{TRUE}, confidence regions are added to coefficient plots when available.
 Default is \code{FALSE}.}
+
+\item{...}{Additional arguments passed to summary plotting functions.}
 }
 \value{
 For \code{which = "beta_3D"}, returns a plotly object. For all other plot types,
@@ -35,7 +38,7 @@ returns the plot invisibly (called for creating a plot).
 }
 \description{
 Creates visualizations of functional linear model components including coefficient surfaces,
-t-values, p-values, and R² goodness-of-fit measure.
+t-values, p-values, and R-squared goodness-of-fit measure.
 }
 \details{
 This function provides a variety of visualization options for interpreting functional linear models:
@@ -59,8 +62,8 @@ Only available for functional predictors.
 Displays pointwise p-values with contour lines at significance levels 0.01, 0.05, and 0.1.
 Only available for functional predictors.
 }
-\item{\strong{R² plot} (\code{which = "R2"})}{
-Shows how the R² measure varies across the response grid, indicating where the model
+\item{\strong{R-squared plot} (\code{which = "R2"})}{
+Shows how the R-squared measure varies across the response grid, indicating where the model
 fits better or worse.
 }
 }
@@ -109,7 +112,7 @@ plot(model_summary, predictor = "w", which = "beta")
 # Plot intercept function
 plot(model_summary, predictor = "intercept", which = "beta")
 
-# Plot R² across response grid
+# Plot R-squared across response grid
 plot(model_summary, which = "R2")
 }
 

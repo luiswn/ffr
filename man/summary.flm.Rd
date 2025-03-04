@@ -4,10 +4,12 @@
 \alias{summary.flm}
 \title{Summary method for flm objects}
 \usage{
-\method{summary}{flm}(object)
+\method{summary}{flm}(object, ...)
 }
 \arguments{
 \item{object}{An object of class "flm", typically the result of a call to \code{\link{flm}}.}
+
+\item{...}{Additional arguments passed to summary functions.}
 }
 \value{
 An object of class "summary.flm" containing:

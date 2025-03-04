@@ -4,10 +4,12 @@
 \alias{print.summary.flm}
 \title{Print method for summary.flm objects}
 \usage{
-\method{print}{summary.flm}(x)
+\method{print}{summary.flm}(x, ...)
 }
 \arguments{
 \item{x}{An object of class "summary.flm", typically the result of a call to \code{\link{summary.flm}}.}
+
+\item{...}{Additional arguments passed to summary printing functions.}
 }
 \value{
 The function is called for printing summary information.
