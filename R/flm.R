@@ -52,8 +52,9 @@
 #'   \item{coefficients}{List with three components:
 #'     \itemize{
 #'       \item{beta}{Functional coefficient surfaces for each predictor}
+#'       \item{intercept}{Functional intercept coefficient}
+#'       \item{scalar}{Univariate functional coefficients for the scalar predictors}
 #'       \item{B}{Matrix of coefficients from finite regression representation}
-#'       \item{scalar}{Univariate functional coefficients for the intercept and scalar predictors}
 #'     }
 #'   }
 #'   \item{residuals}{List containing:
@@ -429,6 +430,14 @@ flm <- function(formula, data, K, conf.level = 0.95, inference = TRUE) {
     beta_hat[[functional_vars[j]]] <- t(B_hat[subset_indices, , drop = F]) %*% t(Psi_hat[[j]])
   }
 
+  # Recover true intercept from alpha_1 star
+  intercept <- B_hat[1,]  # First row of B_hat (intercept term)
+  for(j in seq_along(functional_vars)) {
+    var_name <- functional_vars[j]
+    intercept <- intercept - beta_hat[[var_name]] %*% processed_X[[j]]$mean /
+      ncol(X_functional[[var_name]])
+  }
+
   # Only compute inference-related quantities if inference = TRUE
   inference_results <- if (inference) {
     # Compute covariance-related quantities
@@ -575,7 +584,8 @@ flm <- function(formula, data, K, conf.level = 0.95, inference = TRUE) {
           lapply(scalar_vars, function(var) {
             list(
               name = var,
-              type = "scalar"
+              type = "scalar",
+              data = X_scalar[[var]]
             )
           }),
           scalar_vars
@@ -603,19 +613,17 @@ flm <- function(formula, data, K, conf.level = 0.95, inference = TRUE) {
   model <- list(
     info = model_info,
     coefficients = list(
-      beta = beta_hat, # functional coefficients
-      B = B_hat, # basis coefficients
-      scalar = if (length(scalar_vars) > 0) {
+      beta = beta_hat,  # functional coefficients,
+      intercept = intercept, # true intercept alpha_1 (not alpha_1 star)
+      scalar = if(length(scalar_vars) > 0) {
         # Extract scalar coefficients (intercept and scalar predictors)
-        scalar_coef <- B_hat[1:(1 + length(scalar_vars)), , drop = FALSE]
-        rownames(scalar_coef) <- c("intercept", scalar_vars)
+        scalar_coef <- B_hat[2:(1 + length(scalar_vars)), , drop = FALSE]
+        rownames(scalar_coef) <- scalar_vars
         scalar_coef
       } else {
-        # Only intercept if no scalar predictors
-        structure(B_hat[1, , drop = FALSE],
-          dimnames = list("intercept", NULL)
-        )
-      }
+        NULL
+      },
+      B = B_hat   # basis coefficients
     ),
     residuals = list(
       Y = u_hat,

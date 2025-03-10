@@ -257,8 +257,10 @@ print.summary.flm <- function(x, ...) {
   cat("  plot(summary(model), predictor = 'predictor_name', which = 'beta_3D', conf.region = TRUE)  # Plot 3D coefficient\n")
   cat("  plot(summary(model), predictor = 'predictor_name', which = 't')     # Plot t-values\n")
   cat("  plot(summary(model), predictor = 'predictor_name', which = 'p')     # Plot p-values\n")
-  cat("  plot(summary(model), which = 'R2')     # Plot functional R-squared\n")
   cat("\nFor scalar predictors:\n")
-  cat("  plot(summary(model), predictor = 'intercept', which = 'beta')  # Plot intercept function\n")
   cat("  plot(summary(model), predictor = 'predictor_name', which = 'beta')  # Plot coefficient function\n")
+  cat("\nFor intercept:\n")
+  cat("  plot(summary(model), predictor = 'intercept', which = 'beta')  # Plot intercept function\n")
+  cat("\nFor goodness-of-fit measure R-squared:\n")
+  cat("  plot(summary(model), which = 'R2')     # Plot functional R-squared\n")
 }

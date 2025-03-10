@@ -139,11 +139,8 @@ plot.summary.flm <- function(x, predictor = NULL,
       return(NULL)
     }
 
-    # Get intercept values (should be first row of scalar coefficients)
-    coef_value <- as.vector(x$coefficients$scalar[1, ])
-
     # Create plot for intercept across Y grid
-    matplot(x$info$grid_info$Y$grid, coef_value,
+    matplot(x$info$grid_info$Y$grid, as.vector(x$coefficients$intercept),
       type = "l", lty = 1,
       xlab = paste("Grid points", x$info$call$formula[[2]]), ylab = "Coefficient value",
       main = "Intercept estimate"
