@@ -41,7 +41,6 @@ The data used in the following stems from the [epftoolbox](https://epftoolbox.re
 ``` r
 library(reticulate)
 library(tidyverse)
-library(fastDummies)
 
 # In case of multiple Python installations, set path to use_python("/path/to/python/epftoolbox")
 

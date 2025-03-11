@@ -230,6 +230,31 @@ plot.summary.flm <- function(x, predictor = NULL,
     grid_x <- matrix(rep(X_grid, length(Y_grid)), ncol = length(Y_grid))
     grid_y <- t(matrix(rep(Y_grid, length(X_grid)), ncol = length(X_grid)))
 
+    make_contour <- function(grid) {
+      min_val <- min(grid)
+      max_val <- max(grid)
+      grid_size <- NROW(grid)
+
+      # Dynamically calculate how many contour lines to show
+      if (grid_size <= 30) {
+        # For small grids, show all lines
+        step_size <- (max_val - min_val) / (grid_size - 1)
+      } else {
+        # For larger grids, reduce density
+        target_lines <- 20
+        step_size <- (max_val - min_val) / target_lines
+      }
+
+      list(
+        show = TRUE,
+        color = "white",
+        width = 0.5,
+        start = min_val,
+        end = max_val,
+        size = step_size  # Dynamic step size based on grid density
+      )
+    }
+
     p <- plotly::plot_ly() %>%
       plotly::add_surface(
         x = ~grid_x,
@@ -238,6 +263,10 @@ plot.summary.flm <- function(x, predictor = NULL,
         colorscale = list(
           c(0, 0.5, 1),
           c("blue", "white", "red")
+        ),
+        contours = list(
+          x = make_contour(grid_x),
+          y = make_contour(grid_y)
         ),
         cmin = zlim_beta[1],
         cmax = zlim_beta[2],
@@ -283,7 +312,13 @@ plot.summary.flm <- function(x, predictor = NULL,
           eye = list(x = -2, y = -2, z = 2),
           center = list(x = 0.5, y = 0.5, z = 0),
           up = list(x = 0, y = 0, z = 1)
-        )
+        ),
+        aspectratio = list(
+          x = 1,
+          y = 1,
+          z = 0.6  # Set z scale smaller than one for less "hectic" plots
+        ),
+        aspectmode = "manual"
       )
     )
 
