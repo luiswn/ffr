@@ -11,7 +11,7 @@ The `ffr` package provides a comprehensive framework for estimation, prediction 
 
 ## Preprint
 
-arxiv link
+[https://arxiv.org/abs/2503.12611](https://arxiv.org/abs/2503.12611)
 
 ## Features
 
@@ -127,7 +127,7 @@ plot(ffr_model_sum, which = "R2")
 
 If you use this package in a scientific context, please cite:
 
-Otto, S., & Winter, L. (2025). Functional factor regression with an application to electricity price curve modeling.
+Otto, S., & Winter, L. (2025). Functional factor regression with an application to electricity price curve modeling. https://doi.org/10.48550/arXiv.2503.12611
 
 ## License
 
